@@ -17,7 +17,7 @@ mkDerivation rec {
      owner = "colmap";
      repo = "colmap";
      rev = version;
-     # TODO add back hash
+     hash = 'sha256-1uUbUZdz49TloEaPJijNwa51DxIPjgz/fthnbWLfgS8=';
   };
 
   # TODO: rm once the gcc11 issue is closed, https://github.com/colmap/colmap/issues/1418#issuecomment-1049305256
