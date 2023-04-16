@@ -34,7 +34,7 @@ mkDerivation rec {
     cudatoolkit
   ];
   
-  patches = [ ./opengl-no-gui.patch ]
+  patches = [ ./opengl-no-gui.patch ];
 
   nativeBuildInputs = [
     cmake
