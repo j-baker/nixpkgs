@@ -23,7 +23,6 @@ mkDerivation rec {
   # TODO: rm once the gcc11 issue is closed, https://github.com/colmap/colmap/issues/1418#issuecomment-1049305256
   cmakeFlags = [ "-DOPENGL_ENABLED=ON" ] ++ lib.optionals cudaSupport [
     "-DCUDA_ENABLED=ON"
-    "-DCMAKE_CUDA_ARCHITECTURES=native"
     "-DCUDA_NVCC_FLAGS=--std=c++14"
   ];
 
