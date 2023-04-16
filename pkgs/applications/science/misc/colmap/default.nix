@@ -11,18 +11,19 @@ let
   inherit (cudaPackages) cudatoolkit;
 in
 mkDerivation rec {
-  version = "3.7";
+  version = "3.8";
   pname = "colmap";
   src = fetchFromGitHub {
      owner = "colmap";
      repo = "colmap";
      rev = version;
-     hash = "sha256-uVAw6qwhpgIpHkXgxttKupU9zU+vD0Za0maw2Iv4x+I=";
+     # TODO add back hash
   };
 
   # TODO: rm once the gcc11 issue is closed, https://github.com/colmap/colmap/issues/1418#issuecomment-1049305256
-  cmakeFlags = lib.optionals cudaSupport [
+  cmakeFlags = [ "-DOPENGL_ENABLED=ON" ] ++ lib.optionals cudaSupport [
     "-DCUDA_ENABLED=ON"
+    "-DCMAKE_CUDA_ARCHITECTURES=native"
     "-DCUDA_NVCC_FLAGS=--std=c++14"
   ];
 
@@ -32,6 +33,8 @@ mkDerivation rec {
   ] ++ lib.optionals cudaSupport [
     cudatoolkit
   ];
+  
+  patches = [ ./opengl-no-gui.patch ]
 
   nativeBuildInputs = [
     cmake
