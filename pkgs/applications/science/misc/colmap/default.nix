@@ -33,6 +33,8 @@ mkDerivation rec {
     cudatoolkit
   ];
   
+  enableParallelBuilding = true;
+  
   patches = [ ./opengl-no-gui.patch ];
 
   nativeBuildInputs = [
