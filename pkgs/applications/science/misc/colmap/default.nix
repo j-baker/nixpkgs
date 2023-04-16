@@ -24,6 +24,7 @@ mkDerivation rec {
   cmakeFlags = [ "-DOPENGL_ENABLED=ON" ] ++ lib.optionals cudaSupport [
     "-DCUDA_ENABLED=ON"
     "-DCUDA_NVCC_FLAGS=--std=c++14"
+    "-DCMAKE_CUDA_ARCHITECTURES=all-major"
   ];
 
   buildInputs = [
