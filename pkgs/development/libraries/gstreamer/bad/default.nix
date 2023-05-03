@@ -165,6 +165,7 @@ stdenv.mkDerivation rec {
     libdvdnav
     libdvdread
     qrencode
+    libnice
     libsndfile
     libusb1
     neon
@@ -219,7 +220,6 @@ stdenv.mkDerivation rec {
     flite
     libdrm
     libgudev
-    libnice
     sbc
     spandsp
 
