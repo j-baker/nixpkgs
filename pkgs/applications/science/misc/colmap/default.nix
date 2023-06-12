@@ -1,5 +1,5 @@
 { mkDerivation, lib, fetchFromGitHub, cmake, boost17x, ceres-solver, eigen,
-  freeimage, glog, libGLU, glew, qtbase,
+  freeimage, glog, libGLU, glew, qtbase, lz4,
   cudaSupport ? false, cudaPackages }:
 
 assert cudaSupport -> cudaPackages != { };
@@ -28,7 +28,7 @@ mkDerivation rec {
 
   buildInputs = [
     boost_static ceres-solver eigen
-    freeimage glog libGLU glew qtbase
+    freeimage glog libGLU glew qtbase lz4
   ] ++ lib.optionals cudaSupport [
     cudatoolkit
   ];
