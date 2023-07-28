@@ -93,6 +93,7 @@ stdenv.mkDerivation rec {
 
   makeFlags = [
     "WITH_LIBELF=yes"
+    "WITH_NVCGO=yes"
     "prefix=$(out)"
     # we can't use the WITH_TIRPC=yes flag that exists in the Makefile for the
     # same reason we patch out the static library use of libtirpc so we set the
