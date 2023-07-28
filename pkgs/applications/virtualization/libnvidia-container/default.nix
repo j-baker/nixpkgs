@@ -100,7 +100,7 @@ stdenv.mkDerivation rec {
     # we can't use the WITH_TIRPC=yes flag that exists in the Makefile for the
     # same reason we patch out the static library use of libtirpc so we set the
     # define in CFLAGS
-    "CFLAGS=-DWITH_TIRPC -DWITH_NVCGO"
+    "CFLAGS=-DWITH_TIRPC"
   ];
 
   postInstall =
