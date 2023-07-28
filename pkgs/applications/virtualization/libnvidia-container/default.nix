@@ -77,6 +77,7 @@ stdenv.mkDerivation rec {
       -e 's#all: shared static tools#all: shared tools#g' \
       -e '/$(INSTALL) -m 644 $(LIB_STATIC) $(DESTDIR)$(libdir)/d' \
       -e '/$(INSTALL) -m 755 $(libdir)\/$(LIBGO_SHARED) $(DESTDIR)$(libdir)/d'
+    sed -i "s@/etc/ld.so.cache@/tmp/ld.so.cache@" src/common.h
   '';
 
   enableParallelBuilding = true;
@@ -99,7 +100,7 @@ stdenv.mkDerivation rec {
     # we can't use the WITH_TIRPC=yes flag that exists in the Makefile for the
     # same reason we patch out the static library use of libtirpc so we set the
     # define in CFLAGS
-    "CFLAGS=-DWITH_TIRPC"
+    "CFLAGS=-DWITH_TIRPC -DWITH_NVCGO"
   ];
 
   postInstall =
@@ -108,7 +109,7 @@ stdenv.mkDerivation rec {
       libraryPath = lib.makeLibraryPath [ "$out" driverLink "${driverLink}-32" ];
     in
     ''
-      remove-references-to -t "${go}" $out/lib/libnvidia-container-go.so.1.9.0
+      remove-references-to -t "${go}" $out/lib/libnvidia-container-go.so.1.13.5
       wrapProgram $out/bin/nvidia-container-cli --prefix LD_LIBRARY_PATH : ${libraryPath}
     '';
   disallowedReferences = [ go ];
