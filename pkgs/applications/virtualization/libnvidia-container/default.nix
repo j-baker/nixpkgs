@@ -43,7 +43,6 @@ stdenv.mkDerivation rec {
     # are not resolved via the environment PATH but via the derivation output
     # path.
     ./libnvc-ldconfig-and-path-fixes.patch
-    ./libnvidia-container-ldcache.patch
     ./libnvc-ldcache-container-again.patch
 
     # fix bogus struct declaration
