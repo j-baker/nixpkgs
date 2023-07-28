@@ -38,13 +38,13 @@ stdenv.mkDerivation rec {
   };
 
   patches = [
-    ./libnvidia-container-ldcache.patch
-    ./libnvc-ldcache-container-again.patch
     # locations of nvidia-driver libraries are not resolved via ldconfig which
     # doesn't get used on NixOS. Additional support binaries like nvidia-smi
     # are not resolved via the environment PATH but via the derivation output
     # path.
     ./libnvc-ldconfig-and-path-fixes.patch
+    ./libnvidia-container-ldcache.patch
+    ./libnvc-ldcache-container-again.patch
 
     # fix bogus struct declaration
     ./inline-c-struct.patch
