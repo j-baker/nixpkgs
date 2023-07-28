@@ -38,6 +38,7 @@ stdenv.mkDerivation rec {
   };
 
   patches = [
+    ./libnvidia-container-ldcache.patch
     ./libnvc-ldcache-container-again.patch
     # locations of nvidia-driver libraries are not resolved via ldconfig which
     # doesn't get used on NixOS. Additional support binaries like nvidia-smi
