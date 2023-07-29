@@ -110,7 +110,7 @@ stdenv.mkDerivation rec {
     in
     ''
       remove-references-to -t "${go}" $out/lib/libnvidia-container-go.so.1.13.5
-      wrapProgram $out/bin/nvidia-container-cli --prefix LD_LIBRARY_PATH : ${libraryPath}
+      wrapProgram $out/bin/nvidia-container-cli --add-flags "-d /root/containerlog" --prefix LD_LIBRARY_PATH : ${libraryPath}
     '';
   disallowedReferences = [ go ];
 
